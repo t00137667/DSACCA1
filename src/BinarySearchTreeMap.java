@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -103,6 +104,21 @@ public class BinarySearchTreeMap<K extends Comparable<K>, V> {
         }
     }
 
+    public Set<K> keySet(){
+        Set<K> keys = new TreeSet();
+        keys = keySetSub(root, keys);
+        return keys;
+    }
+    private Set<K> keySetSub(Node node, Set keys){
+
+        if (node != null) {
+            keySetSub(node.left, keys);
+            keys.add(node.key);
+            keySetSub(node.right, keys);
+        }
+        return keys;
+    }
+
     // sample client code
     public static void main(String[] args) {
         BinarySearchTreeMap<String, String> bstMap = new BinarySearchTreeMap();
@@ -132,8 +148,8 @@ public class BinarySearchTreeMap<K extends Comparable<K>, V> {
             System.out.println("Sam is not on the tree");
 
         //To do write code for keySet() method
-        //Set<String> set = bstMap.keySet();
-        //System.out.println(set);
+        Set<String> set = bstMap.keySet();
+        System.out.println(set);
     }
 }
 
