@@ -19,5 +19,6 @@ public class IndexMain {
         long eTime =System.currentTimeMillis();
         long duration = eTime-sTime;
         System.out.println("Time: " + duration);
+
     }
 }

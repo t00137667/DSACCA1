@@ -16,18 +16,22 @@ public class InvertedIndex {
     // Methods
     public InvertedIndex() {
         //index = new BinarySearchTreeMap<>();
-        index = new TreeMap<>(); // Use HashMap in a separate run
+        //index = new TreeMap<>(); // Use HashMap in a separate run
+        index = new HashMap<>();
 
         allWords = new HashSet();
     }
 
     public void buildIndex(List<File> files) {
+        int wordCount = 0;
         for (File file : files) {
             try {
                 Scanner in = new Scanner(file);
 
                 String line;
                 String words[];
+
+
 
                 while (in.hasNextLine()) {
                     //read a line
@@ -36,7 +40,7 @@ public class InvertedIndex {
                     // the character pattern that separates words is any sequence of
                     // characters other than letters, numbers and apostrophe
                     // This strips off punctuation marks
-                    words = line.split("[^A-Za-z0-9']+");
+                    words = line.split("[^A-Za-z']+");
 
                     //add words and filename to index
                     for (String word : words) {
@@ -46,6 +50,7 @@ public class InvertedIndex {
                                 list.add(file);
                                 index.put(word, list);
                                 allWords.add(word);
+                                wordCount++;
                             } else {
                                 // word already in index - check if fileName there
                                 List<File> list = index.get(word);
@@ -56,13 +61,15 @@ public class InvertedIndex {
                         }
                     }
                 }
-
+                System.out.println("Number of words added to index: " + wordCount);
+                //System.out.println("Height of Index: " + index.height());
             } catch (IOException exc) {
                 System.out.println("File does not exist");
                 exc.printStackTrace();
                 System.exit(1);
             }
         }
+
     }
     
     public void print() {
