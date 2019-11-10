@@ -16,8 +16,8 @@ public class InvertedIndex {
     // Methods
     public InvertedIndex() {
         //index = new BinarySearchTreeMap<>();
-        //index = new TreeMap<>(); // Use HashMap in a separate run
-        index = new HashMap<>();
+        index = new TreeMap<>(); // Use HashMap in a separate run
+        //index = new HashMap<>();
 
         allWords = new HashSet();
     }
